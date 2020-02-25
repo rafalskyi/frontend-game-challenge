@@ -28,8 +28,5 @@ const AuthPage = ({ currentUser, setUserName }: AuthPageProps) => {
 const mapStateToProps = (state: STORE) => ({
   currentUser: state.users.currentUser,
 });
-const mapDispatchToProps = {
-  setUserName,
-};
 
-export default connect(mapStateToProps, mapDispatchToProps)(AuthPage);
+export default connect(mapStateToProps, { setUserName })(AuthPage);

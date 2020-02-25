@@ -1,19 +1,14 @@
-import React, { lazy } from 'react';
+import { lazy } from 'react';
 
 export const appRoutes = [
   {
     path: '/',
     isProtected: false,
-    component: () => <div>landing page</div>,
-  },
-  {
-    path: '/auth',
-    isProtected: false,
-    component: lazy(() => import('../containers/auth-page')),
+    component: lazy(() => import('../routes/auth')),
   },
   {
     path: '/game',
     isProtected: true,
-    component: () => <div>game itself</div>,
+    component: lazy(() => import('../routes/game')),
   },
 ];
