@@ -13,3 +13,21 @@ export const getEntitiesSuccess = (payload: EntityItem[]) => ({
 export const getEntitiesFail = () => ({
   type: types.GET_ENTITIES_FAIL,
 });
+
+export const userChoise = (payload: string) => ({
+  type: types.USER_CHOISE,
+  payload,
+});
+
+export const userChoiseSuccess = (payload: string) => ({
+  type: types.USER_CHOISE_SUCCESS,
+  payload,
+});
+
+export const userChoiseFail = () => ({
+  type: types.USER_CHOISE_FAIL,
+});
+
+export const setANewGame = () => ({
+  type: types.SET_A_NEW_GAME,
+});

@@ -12,5 +12,15 @@ export const initialStore: STORE = {
   entity: {
     entities: [],
     isFetching: false,
+    userOneChoise: {
+      id: '',
+      score: 0,
+    },
+    userTwoChoise: {
+      id: '',
+      score: 0,
+    },
+    numberOfRound: 0,
+    roundResult: '',
   },
 };
