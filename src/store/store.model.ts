@@ -1,5 +1,7 @@
-import { UserReducerI } from './users/model';
+import { USER } from './users/model';
+import { ENTITY } from './game/model';
 
 export interface STORE {
-  users: UserReducerI;
+  users: USER;
+  entity: ENTITY;
 }

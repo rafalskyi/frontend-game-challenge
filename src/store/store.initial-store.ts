@@ -9,4 +9,8 @@ export const initialStore: STORE = {
       name: null,
     },
   },
+  entity: {
+    entities: [],
+    isFetching: false,
+  },
 };

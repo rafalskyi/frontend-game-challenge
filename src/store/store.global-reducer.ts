@@ -5,9 +5,11 @@ import { STORE } from './store.model';
 
 // reducers
 import { userReducer } from './users/reducer';
+import { entityReducer } from './game/reducer';
 
 const appReducer = combineReducers({
   users: userReducer,
+  entity: entityReducer,
 });
 
 export const rootReducer: Reducer<STORE, AnyAction> = (state, action): STORE => {

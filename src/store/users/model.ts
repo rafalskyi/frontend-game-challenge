@@ -1,6 +1,8 @@
-import { UserI } from '../../entities/User';
+export interface UserI {
+  name: string | null;
+}
 
-export type UserReducerI = {
+export type USER = {
   currentUser: UserI;
   opponent: UserI;
 };

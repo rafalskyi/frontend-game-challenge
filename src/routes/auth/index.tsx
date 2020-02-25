@@ -6,7 +6,7 @@ import { AuthForm, FormValues } from './form';
 
 // DEPENDENT MODELS
 import { STORE } from '../../store/store.model';
-import { UserI } from '../../entities/User';
+import { UserI } from '../../store/users/model';
 
 // ACTION CREATORS
 import { setUserName } from '../../store/users/action-creators';
