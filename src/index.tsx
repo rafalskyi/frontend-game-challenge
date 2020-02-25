@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
@@ -6,14 +6,14 @@ import * as serviceWorker from './serviceWorker';
 
 import './index.css';
 import App from './App';
-import getStore from './getStore';
-
-const store = getStore();
+import store from './store';
 
 ReactDOM.render(
   <BrowserRouter>
     <Provider store={store}>
-      <App />
+      <Suspense fallback={null}>
+        <App />
+      </Suspense>
     </Provider>
   </BrowserRouter>,
   document.getElementById('root')

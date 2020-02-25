@@ -1,0 +1,1 @@
+export const GLOBAL_STORE_RESET = 'global/GLOBAL_STORE_RESET';

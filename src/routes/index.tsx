@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { lazy } from 'react';
 
 export const appRoutes = [
   {
@@ -9,7 +9,7 @@ export const appRoutes = [
   {
     path: '/auth',
     isProtected: false,
-    component: () => <div>auth</div>,
+    component: lazy(() => import('../containers/auth-page')),
   },
   {
     path: '/game',

@@ -7,7 +7,7 @@ import './App.css';
 import { IAppState, isAppStarted, appStartAction } from './getStore';
 
 import { appRoutes } from './routes';
-import { ProtectedRoute } from './components/ProtectedRoute';
+import { ProtectedRoute } from './components/protected-route';
 
 export interface Props {
   started: boolean;
@@ -15,19 +15,11 @@ export interface Props {
 }
 
 export const AppRoot: React.FC<Props> = ({ started, onStart }) => {
-  React.useEffect(() => {
-    onStart();
-  }, [onStart]);
-
-  if (!started) {
-    return <span className="loading">Loading...</span>;
-  }
-
   return (
     <div className="app">
       <Switch>
         {appRoutes.map(({ path, isProtected, component }) => (
-          <ProtectedRoute path={path} component={component} isProtected={isProtected} exact />
+          <ProtectedRoute key={path} path={path} component={component} isProtected={isProtected} exact />
         ))}
       </Switch>
     </div>
