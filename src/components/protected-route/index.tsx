@@ -16,5 +16,6 @@ export const ProtectedRoute = ({ isProtected, ...routeProps }: ProtectedRoutePro
   if (!isPassAllowed()) {
     return null;
   }
+
   return <Route {...routeProps} />;
 };
