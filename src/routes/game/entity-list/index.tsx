@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 // MODELS
 import { EntityItem, userChoiseType } from '../../../store/game/model';
@@ -7,9 +7,15 @@ type EntityListProps = {
   entities: EntityItem[];
   userChoise?: userChoiseType;
   userBoard?: boolean;
+  selected: string;
 };
 
-export const EntityList = ({ entities, userChoise, userBoard = false }: EntityListProps) => {
+export const EntityList = ({ entities, userChoise, selected, userBoard = false }: EntityListProps) => {
+  const [boardClass, setBoardClass] = useState<string>('');
+  useEffect(() => {
+    setBoardClass(userBoard ? 'list-item' : 'list-item pc');
+  }, [userBoard]);
+
   const userChoiseEvent = (id: string) => userChoise && userChoise(id);
 
   return (
@@ -17,7 +23,7 @@ export const EntityList = ({ entities, userChoise, userBoard = false }: EntityLi
       <ul className="list">
         {entities.map((el) => (
           <li
-            className={userBoard ? 'list-item' : 'list-item pc'}
+            className={`${boardClass} ${el.id === selected ? 'selected' : ''}`}
             key={el.id}
             onClick={userBoard ? userChoiseEvent.bind(null, el.id) : () => {}}>
             <div className={userBoard ? 'image-box' : 'image-box pc'}>

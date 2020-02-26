@@ -11,6 +11,7 @@ import { getEntitiesType, userChoiseType, setANewGameType, EntityItem, ISER_CHOI
 // COMPONENTS
 import { EntityList } from './entity-list';
 import { CustomModal } from '../../components/modal';
+import { Spiner } from '../../components/spiner';
 
 import { MAX_ROUND_COUNT } from '../../constants';
 
@@ -24,6 +25,7 @@ interface StoreProps {
   userTwo: ISER_CHOISE;
   roundResult: string;
   numberOfRound: number;
+  isFetching: boolean;
 }
 
 interface DispatchProps {
@@ -81,19 +83,21 @@ class GameComponent extends Component<ALLPROPS, ALLSTATE> {
 
   render() {
     const { openModal } = this.state;
-    const { entities, userOne, userTwo, roundResult, numberOfRound, userChoise } = this.props;
+    const { entities, userOne, userTwo, roundResult, numberOfRound, userChoise, isFetching } = this.props;
     return (
       <div className="game">
         <h1>{numberOfRound === 0 ? `Choose your fighter` : `Round #${numberOfRound}`}</h1>
         <h1>
           {userOne.score} : {userTwo.score}
         </h1>
+
         <div className="game-board">
-          <EntityList userBoard entities={entities} userChoise={userChoise} />
+          {isFetching && <Spiner />}
+          <EntityList userBoard entities={entities} userChoise={userChoise} selected={userOne.id} />
           <div className="vs-title-box">
             <h1>VS</h1>
           </div>
-          <EntityList entities={entities} />
+          <EntityList entities={entities} selected={userTwo.id} />
         </div>
         {roundResult && <h1>{roundResult}</h1>}
 
@@ -116,6 +120,7 @@ class GameComponent extends Component<ALLPROPS, ALLSTATE> {
 
 const mapStateToProps = (store: STORE): StoreProps => ({
   entities: store.entity.entities,
+  isFetching: store.entity.isFetching,
   userOne: store.entity.userOneChoise,
   userTwo: store.entity.userTwoChoise,
   roundResult: store.entity.roundResult,

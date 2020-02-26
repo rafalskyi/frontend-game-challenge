@@ -9,6 +9,7 @@
 .game-board {
   display: flex;
   align-items: center;
+  position: relative;
 }
 
 .vs-title-box {
@@ -35,6 +36,7 @@
 
   border: 1px solid #eee;
   border-radius: 3px;
+  transition: box-shadow 0.5s ease-in-out;
 }
 
 .list-item.pc {
@@ -42,8 +44,16 @@
   pointer-events: none;
 }
 
+.list-item.selected {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
 .list-item:not(:last-child) {
   margin-bottom: 20px;
+}
+
+.list-item:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .image-box {

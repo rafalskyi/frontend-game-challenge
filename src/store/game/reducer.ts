@@ -24,7 +24,13 @@ export const entityReducer: Reducer<ENTITY, AnyAction> = (state = initialStore.e
     }
 
     case types.USER_CHOISE: {
-      return { ...state, isFetching: true, roundResult: '', userOneChoise: { ...state.userOneChoise, id: payload } };
+      return {
+        ...state,
+        isFetching: true,
+        roundResult: '',
+        userOneChoise: { ...state.userOneChoise, id: payload },
+        userTwoChoise: { ...state.userTwoChoise, id: '' },
+      };
     }
 
     case types.USER_CHOISE_SUCCESS: {
