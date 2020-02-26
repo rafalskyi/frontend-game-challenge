@@ -20,6 +20,7 @@
     "enzyme-adapter-react-16": "^1.15.1",
     "husky": "^4.2.3",
     "lint-staged": "^10.0.7",
+    "node-sass": "^4.13.1",
     "prettier": "^1.19.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",

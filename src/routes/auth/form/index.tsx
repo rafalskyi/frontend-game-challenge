@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Input } from '../../../components/input';
 
+import './styles.scss';
+
 export type FormValues = {
   name: string;
 };
@@ -26,9 +28,17 @@ export const AuthForm = ({ handleSubmit }: AuthFormProps) => {
   };
 
   return (
-    <form onSubmit={innerHandleSubmitWrapper}>
-      <Input type="text" value={formValues['name']} onChange={setformValuesForKey('name')} label="Name" />
-      <button type="submit">Go in</button>
+    <form className="auth-form" onSubmit={innerHandleSubmitWrapper}>
+      <Input
+        type="text"
+        value={formValues['name']}
+        onChange={setformValuesForKey('name')}
+        label="Name"
+        placeholder="Type your name here..."
+      />
+      <button className="auth-form__submit" type="submit">
+        Go in
+      </button>
     </form>
   );
 };
