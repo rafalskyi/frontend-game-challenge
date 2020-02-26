@@ -1,0 +1,33 @@
+.header {
+  box-sizing: border-box;
+  background: #9999c3;
+  width: 100%;
+  padding: 25px 40px;
+
+  border-top: 5px solid #c0e6de;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__link {
+    margin-right: 25px;
+  }
+
+  &__user-name {
+    outline: #7b8cde;
+    color: white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    font-size: large;
+  }
+
+  a {
+    color: #c0e6de;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  .active-route {
+    color: white;
+  }
+}
