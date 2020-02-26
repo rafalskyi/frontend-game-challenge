@@ -13,21 +13,21 @@ type EntityListProps = {
 export const EntityList = ({ entities, userChoise, selected, userBoard = false }: EntityListProps) => {
   const [boardClass, setBoardClass] = useState<string>('');
   useEffect(() => {
-    setBoardClass(userBoard ? 'list-item' : 'list-item pc');
+    setBoardClass(userBoard ? 'game__list-item' : 'game__list-item game__list-item--pc');
   }, [userBoard]);
 
   const userChoiseEvent = (id: string) => userChoise && userChoise(id);
 
   return (
-    <div className="list-box">
-      <ul className="list">
+    <div className="game__list-box">
+      <ul className="game__list">
         {entities.map((el) => (
           <li
-            className={`${boardClass} ${el.id === selected ? 'selected' : ''}`}
+            className={`${boardClass} ${el.id === selected ? 'game__list-item--selected' : ''}`}
             key={el.id}
             onClick={userBoard ? userChoiseEvent.bind(null, el.id) : () => {}}>
-            <div className={userBoard ? 'image-box' : 'image-box pc'}>
-              <img className="image" src={el.icon} alt={el.title} />
+            <div className={userBoard ? 'game__image-box' : 'game__image-box game__image-box--pc'}>
+              <img className="game__image" src={el.icon} alt={el.title} />
             </div>
             <p>{el.title}</p>
           </li>

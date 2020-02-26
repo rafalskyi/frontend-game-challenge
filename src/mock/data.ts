@@ -5,7 +5,7 @@ export type ENTITIESTYPE = {
   defeat: string[];
   isDefeated: string[];
   index: number;
-  range: number[];
+  probability: number[];
 };
 
 export const ENTITIES = [
@@ -16,7 +16,7 @@ export const ENTITIES = [
     defeat: ['Pikemen#hash'],
     isDefeated: ['Cavalry#hash'],
     index: 1,
-    range: [],
+    probability: [],
   },
   {
     id: 'Cavalry#hash',
@@ -25,7 +25,7 @@ export const ENTITIES = [
     defeat: ['Archer#hash'],
     isDefeated: ['Pikemen#hash'],
     index: 2,
-    rangeS: [],
+    probability: [],
   },
   {
     id: 'Pikemen#hash',
@@ -34,6 +34,6 @@ export const ENTITIES = [
     defeat: ['Cavalry#hash'],
     isDefeated: ['Archer#hash'],
     index: 3,
-    range: [],
+    probability: [],
   },
 ];

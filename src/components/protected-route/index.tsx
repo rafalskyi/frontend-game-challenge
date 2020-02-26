@@ -46,7 +46,7 @@ const RootProtectedRoute = ({
   }
 
   if (!isPassAllowed(currentUser)) {
-    alert('Pick a name first');
+    // alert('Pick a name first');
     return <Redirect to={AUTH_PAGE_PATH} />;
   }
 

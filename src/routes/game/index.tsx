@@ -15,7 +15,7 @@ import { Spiner } from '../../components/spiner';
 
 import { MAX_ROUND_COUNT } from '../../constants';
 
-import './style.css';
+import './style.scss';
 
 interface OwnProps {}
 
@@ -40,7 +40,7 @@ type ALLSTATE = {
   openModal: boolean;
 };
 
-class GameComponent extends Component<ALLPROPS, ALLSTATE> {
+export class GameComponent extends Component<ALLPROPS, ALLSTATE> {
   state = {
     openModal: false,
   };
@@ -61,6 +61,7 @@ class GameComponent extends Component<ALLPROPS, ALLSTATE> {
 
   componentWillUnmount() {
     const { setANewGame } = this.props;
+
     setANewGame();
   }
 
@@ -86,20 +87,20 @@ class GameComponent extends Component<ALLPROPS, ALLSTATE> {
     const { entities, userOne, userTwo, roundResult, numberOfRound, userChoise, isFetching } = this.props;
     return (
       <div className="game">
-        <h1>{numberOfRound === 0 ? `Choose your fighter` : `Round #${numberOfRound}`}</h1>
+        <h1 className="game__title">{numberOfRound === 0 ? `Choose your fighter` : `Round #${numberOfRound}`}</h1>
         <h1>
           {userOne.score} : {userTwo.score}
         </h1>
 
-        <div className="game-board">
+        <div className="game__board">
           {isFetching && <Spiner />}
           <EntityList userBoard entities={entities} userChoise={userChoise} selected={userOne.id} />
-          <div className="vs-title-box">
+          <div className="game__vs-title-box">
             <h1>VS</h1>
           </div>
           <EntityList entities={entities} selected={userTwo.id} />
         </div>
-        {roundResult && <h1>{roundResult}</h1>}
+        {roundResult && <h1 className="game__round-result">{roundResult}</h1>}
 
         {openModal && (
           <CustomModal closeEvent={this.closeModalEvent}>
@@ -108,8 +109,10 @@ class GameComponent extends Component<ALLPROPS, ALLSTATE> {
                 Game ends with {userOne.score} : {userTwo.score} score
               </h3>
 
-              <p>{this.resultString()}</p>
-              <button onClick={this.closeModalEvent}>Start a new game</button>
+              <p className="game__game-result-title">{this.resultString()}</p>
+              <button className="game__new-game-button" onClick={this.closeModalEvent}>
+                Start a new game
+              </button>
             </div>
           </CustomModal>
         )}

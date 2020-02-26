@@ -5,3 +5,21 @@
   justify-content: center;
   align-items: center;
 }
+
+.auth-form {
+  padding: 25px 50px;
+  border: 1px solid #c0e6de;
+  border-radius: 3px;
+
+  &__submit {
+    display: block;
+    border: none;
+    background: #9999c3;
+    padding: 7.5px 25px;
+    text-transform: uppercase;
+    color: white;
+    margin: auto;
+    margin-top: 15px;
+    cursor: pointer;
+  }
+}

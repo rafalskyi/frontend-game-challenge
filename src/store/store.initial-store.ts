@@ -6,7 +6,7 @@ export const initialStore: STORE = {
       name: null,
     },
     opponent: {
-      name: null,
+      name: 'Mega Brain',
     },
   },
   entity: {

@@ -5,5 +5,5 @@ import './styles.scss';
 export interface MainProps {}
 
 export const Main: React.FC<MainProps> = ({ children }) => {
-  return <main>{children}</main>;
+  return <main className="container">{children}</main>;
 };

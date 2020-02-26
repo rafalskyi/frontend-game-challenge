@@ -13,7 +13,6 @@ import { AuthForm, FormValues } from './form';
 
 // DEPENDENT MODELS
 import { STORE } from '../../store/store.model';
-import { UserI } from '../../store/users/model';
 
 // ACTION CREATORS
 import { setUserName } from '../../store/users/action-creators';
@@ -23,7 +22,7 @@ export interface AuthPageProps extends RouteComponentProps {
   setUserName: Function;
 }
 
-const AuthPage = ({ setUserName, history }: AuthPageProps) => {
+export const AuthPage = ({ setUserName, history }: AuthPageProps) => {
   const handleSubmit = (formValues: FormValues) => {
     setUserName(formValues);
     history.push(GAME_PAGE_PATH);

@@ -7,7 +7,7 @@ import './styles.scss';
 
 // MODELS
 import { STORE } from '../../../store/store.model';
-import { UserI } from '../../../store/users/model';
+// import { UserI } from '../../../store/users/model';
 
 // CONSTANTS
 import { GAME_PAGE_PATH, AUTH_PAGE_PATH } from '../../../routes';
@@ -19,10 +19,11 @@ function checkIsActive(path: string) {
 
 // PROPS MODEL
 export interface HeaderProps {
-  currentUser: UserI;
+  currentUserName: string | null;
+  opponentName: string | null;
 }
 
-const RootHeader: React.FC<HeaderProps> = ({ currentUser }) => {
+const RootHeader: React.FC<HeaderProps> = ({ currentUserName, opponentName }) => {
   return (
     <header className="header">
       <nav className="header__nav">
@@ -33,15 +34,18 @@ const RootHeader: React.FC<HeaderProps> = ({ currentUser }) => {
           Change Name
         </Link>
       </nav>
-      <section className="header__right-section">
-        <p className="header__user-name">{currentUser.name}</p>
-      </section>
+      {currentUserName && opponentName && (
+        <section className="header__right-section">
+          <span className="header__user-name">{`${currentUserName} VS ${opponentName}`}</span>
+        </section>
+      )}
     </header>
   );
 };
 
 const mapStateToProps = (state: STORE) => ({
-  currentUser: state.users.currentUser,
+  currentUserName: state.users.currentUser.name,
+  opponentName: state.users.opponent.name,
 });
 const mapDispatchToProps = {};
 

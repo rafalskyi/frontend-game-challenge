@@ -1,9 +1,11 @@
-import { shallow } from 'enzyme';
-import * as React from 'react';
+// import { shallow } from 'enzyme';
+import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { Provider } from 'react-redux';
 import ReactDOM from 'react-dom';
 
-import { initialState } from '../getStore';
-import { AppRoot, mapStateToProps } from '../App';
+import store from '../store';
+import { AppRoot } from '../routes/app';
 
 describe('Root App component rendering', () => {
   beforeEach(() => {
@@ -12,36 +14,14 @@ describe('Root App component rendering', () => {
 
   it('renders without crashing', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<AppRoot started={true} onStart={() => null} />, div);
+    ReactDOM.render(
+      <Router>
+        <Provider store={store}>
+          <AppRoot />
+        </Provider>
+      </Router>,
+      div
+    );
     ReactDOM.unmountComponentAtNode(div);
-  });
-
-  it('renders loading state', () => {
-    const props = {
-      started: false,
-      onStart: jest.fn(),
-    };
-    const wrapper = shallow(<AppRoot {...props} />);
-    expect(wrapper.find('.loading').exists()).toBe(true);
-    expect(wrapper.find('.app').exists()).toBe(false);
-  });
-
-  it('renders started state', () => {
-    const props = {
-      started: true,
-      onStart: jest.fn(),
-    };
-    const wrapper = shallow(<AppRoot {...props} />);
-    expect(wrapper.find('.loading').exists()).toBe(false);
-    expect(wrapper.find('.app').exists()).toBe(true);
-  });
-
-  it('properly binds state', () => {
-    const state = {
-      ...initialState,
-      started: true,
-    };
-    const props = mapStateToProps(state);
-    expect(props.started).toEqual(true);
   });
 });

@@ -1,7 +1,5 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
 import { Input } from '../../../components/input';
-
-import './styles.scss';
 
 export type FormValues = {
   name: string;
@@ -11,34 +9,31 @@ export type AuthFormProps = {
   handleSubmit: (formValues: FormValues) => void;
 };
 
-export const AuthForm = ({ handleSubmit }: AuthFormProps) => {
-  const [formValues, setformValues] = useState<FormValues>({
-    name: '',
-  });
+export class AuthForm extends Component<AuthFormProps, FormValues> {
+  state = { name: '' };
 
-  const setformValuesForKey = (key: string) => (event: React.ChangeEvent<HTMLInputElement>) =>
-    setformValues({
-      ...formValues,
-      [key]: event.target.value,
-    });
+  setformValuesForKey = (event: React.ChangeEvent<HTMLInputElement>) => this.setState({ name: event.target.value });
 
-  const innerHandleSubmitWrapper = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    handleSubmit(formValues);
+  saveEvent = () => {
+    const { handleSubmit } = this.props;
+    handleSubmit(this.state);
   };
 
-  return (
-    <form className="auth-form" onSubmit={innerHandleSubmitWrapper}>
-      <Input
-        type="text"
-        value={formValues['name']}
-        onChange={setformValuesForKey('name')}
-        label="Name"
-        placeholder="Type your name here..."
-      />
-      <button className="auth-form__submit" type="submit">
-        Go in
-      </button>
-    </form>
-  );
-};
+  render() {
+    const { name } = this.state;
+    return (
+      <div className="auth-form">
+        <Input
+          type="text"
+          value={name}
+          onChange={this.setformValuesForKey}
+          // label="Name"
+          placeholder="Type your name here..."
+        />
+        <button className="auth-form__submit" onClick={this.saveEvent}>
+          Go in
+        </button>
+      </div>
+    );
+  }
+}

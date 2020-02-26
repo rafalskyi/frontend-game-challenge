@@ -4,7 +4,7 @@ import { EntityItem } from '../../store/game/model';
 import { GET_ENTITIES, USER_CHOISE } from '../../store/game/types';
 import * as entitiesActions from '../../store/game/actions';
 
-import { getEntity, userChoiseReques } from '../../mock/requests';
+import { getEntity, userChoiseRequest } from '../../mock/requests';
 
 function* getEntities() {
   try {
@@ -18,7 +18,7 @@ function* getEntities() {
 
 function* userChoise() {
   try {
-    const response: string = yield call(userChoiseReques);
+    const response: string = yield call(userChoiseRequest);
 
     yield put(entitiesActions.userChoiseSuccess(response));
   } catch (error) {
