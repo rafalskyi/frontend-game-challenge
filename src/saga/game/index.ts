@@ -6,7 +6,7 @@ import * as entitiesActions from '../../store/game/actions';
 
 import { getEntity, userChoiceRequest } from '../../mock/requests';
 
-function* getEntities() {
+export function* getEntitiesWorkerSaga() {
   try {
     const response: EntityItem[] = yield call(getEntity);
 
@@ -16,7 +16,7 @@ function* getEntities() {
   }
 }
 
-function* userChoice() {
+export function* userChoiseWorkerSaga() {
   try {
     const response: string = yield call(userChoiceRequest);
 
@@ -27,8 +27,8 @@ function* userChoice() {
 }
 
 function* entity() {
-  yield takeEvery(GET_ENTITIES, getEntities);
-  yield takeEvery(USER_CHOICE, userChoice);
+  yield takeEvery(GET_ENTITIES, getEntitiesWorkerSaga);
+  yield takeEvery(USER_CHOICE, userChoiseWorkerSaga);
 }
 
 export default entity;
