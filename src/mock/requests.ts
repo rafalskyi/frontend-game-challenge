@@ -1,6 +1,6 @@
 import { ENTITIES, ENTITIESTYPE } from './data';
 
-import { getRandomnumber } from '../utils/randomizer';
+import { getRandomNumber } from '../utils/randomizer';
 
 const generateProbability = (arr: ENTITIESTYPE[], preferIndex: number): ENTITIESTYPE[] => {
   return arr.reduce((acc, item) => {
@@ -14,7 +14,7 @@ const generateProbability = (arr: ENTITIESTYPE[], preferIndex: number): ENTITIES
   }, [] as ENTITIESTYPE[]);
 };
 
-const getOpponentChoise = (arr: ENTITIESTYPE[], randomNumber: number): string => {
+const getOpponentChoice = (arr: ENTITIESTYPE[], randomNumber: number): string => {
   return arr.reduce(
     (acc, item) => (item.probability[0] <= randomNumber && randomNumber <= item.probability[1] ? item.id : acc),
     ''
@@ -23,16 +23,16 @@ const getOpponentChoise = (arr: ENTITIESTYPE[], randomNumber: number): string =>
 
 export const getEntity = () => new Promise((res, rej) => setTimeout(() => res(ENTITIES), 500));
 
-export const userChoiseRequest = () =>
+export const userChoiceRequest = () =>
   new Promise((res, rej) =>
     setTimeout(() => {
-      const preferIndex = getRandomnumber(ENTITIES.length);
-      const randomNumber = getRandomnumber(100);
+      const preferIndex = getRandomNumber(ENTITIES.length);
+      const randomNumber = getRandomNumber(100);
 
       const entitiesWithProbability = generateProbability(ENTITIES, preferIndex);
 
-      const userTwoChoise = getOpponentChoise(entitiesWithProbability, randomNumber);
+      const userTwoChoice = getOpponentChoice(entitiesWithProbability, randomNumber);
 
-      res(userTwoChoise);
+      res(userTwoChoice);
     }, 1000)
   );

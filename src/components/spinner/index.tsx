@@ -4,8 +4,8 @@ import loader from '../../assets/svg/35.gif';
 
 import './style.scss';
 
-export const Spiner = () => (
-  <div className="spiner">
+export const Spinner = () => (
+  <div className="spinner">
     <img src={loader} alt="loader" />
   </div>
 );

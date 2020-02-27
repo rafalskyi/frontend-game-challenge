@@ -17,10 +17,15 @@ import { STORE } from '../../store/store.model';
 // ACTION CREATORS
 import { setUserName } from '../../store/users/action-creators';
 
-// PROPS MODEL
-export interface AuthPageProps extends RouteComponentProps {
+interface OwnProps {}
+
+interface StoreProps {}
+
+interface DispatchProps {
   setUserName: Function;
 }
+
+type AuthPageProps = RouteComponentProps & OwnProps & StoreProps & DispatchProps;
 
 export const AuthPage = ({ setUserName, history }: AuthPageProps) => {
   const handleSubmit = (formValues: FormValues) => {
@@ -35,6 +40,4 @@ export const AuthPage = ({ setUserName, history }: AuthPageProps) => {
   );
 };
 
-const mapStateToProps = (state: STORE) => ({});
-
-export default connect(mapStateToProps, { setUserName })(AuthPage);
+export default connect<StoreProps, DispatchProps, OwnProps, STORE>(null, { setUserName })(AuthPage);

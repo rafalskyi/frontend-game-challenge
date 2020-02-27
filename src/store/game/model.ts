@@ -6,20 +6,20 @@ export type EntityItem = {
   isDefeated: string[];
 };
 
-export type ISER_CHOISE = {
+export type USER_CHOICE = {
   id: string;
   score: number;
 };
 
 export type getEntitiesType = () => void;
 export type setANewGameType = () => void;
-export type userChoiseType = (payload: string) => void;
+export type userChoiceType = (payload: string) => void;
 
 export type ENTITY = {
   entities: EntityItem[];
   isFetching: boolean;
-  userOneChoise: ISER_CHOISE;
-  userTwoChoise: ISER_CHOISE;
+  userOneChoice: USER_CHOICE;
+  userTwoChoice: USER_CHOICE;
   numberOfRound: number;
   roundResult: string;
 };

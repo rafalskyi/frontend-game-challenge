@@ -1,10 +1,10 @@
 import { call, takeEvery, put } from 'redux-saga/effects';
 
 import { EntityItem } from '../../store/game/model';
-import { GET_ENTITIES, USER_CHOISE } from '../../store/game/types';
+import { GET_ENTITIES, USER_CHOICE } from '../../store/game/types';
 import * as entitiesActions from '../../store/game/actions';
 
-import { getEntity, userChoiseRequest } from '../../mock/requests';
+import { getEntity, userChoiceRequest } from '../../mock/requests';
 
 function* getEntities() {
   try {
@@ -16,19 +16,19 @@ function* getEntities() {
   }
 }
 
-function* userChoise() {
+function* userChoice() {
   try {
-    const response: string = yield call(userChoiseRequest);
+    const response: string = yield call(userChoiceRequest);
 
-    yield put(entitiesActions.userChoiseSuccess(response));
+    yield put(entitiesActions.userChoiceSuccess(response));
   } catch (error) {
-    yield put(entitiesActions.userChoiseFail());
+    yield put(entitiesActions.userChoiceFail());
   }
 }
 
 function* entity() {
   yield takeEvery(GET_ENTITIES, getEntities);
-  yield takeEvery(USER_CHOISE, userChoise);
+  yield takeEvery(USER_CHOICE, userChoice);
 }
 
 export default entity;

@@ -23,31 +23,31 @@ export const entityReducer: Reducer<ENTITY, AnyAction> = (state = initialStore.e
       return { ...state, isFetching: false };
     }
 
-    case types.USER_CHOISE: {
+    case types.USER_CHOICE: {
       return {
         ...state,
         isFetching: true,
         roundResult: '',
-        userOneChoise: { ...state.userOneChoise, id: payload },
-        userTwoChoise: { ...state.userTwoChoise, id: '' },
+        userOneChoice: { ...state.userOneChoice, id: payload },
+        userTwoChoice: { ...state.userTwoChoice, id: '' },
       };
     }
 
-    case types.USER_CHOISE_SUCCESS: {
-      if (state.userOneChoise.id === payload) {
+    case types.USER_CHOICE_SUCCESS: {
+      if (state.userOneChoice.id === payload) {
         return {
           ...state,
           isFetching: false,
-          roundResult: 'DROW',
+          roundResult: 'DRAW',
           numberOfRound: state.numberOfRound + 1,
-          userTwoChoise: {
-            ...state.userTwoChoise,
+          userTwoChoice: {
+            ...state.userTwoChoice,
             id: payload,
           },
         };
       }
 
-      const userOneEntity = state.entities.find((el) => el.id === state.userOneChoise.id);
+      const userOneEntity = state.entities.find((el) => el.id === state.userOneChoice.id);
       const userOneWin = userOneEntity ? userOneEntity.defeat.some((el) => el === payload) : false;
 
       // user win
@@ -57,12 +57,12 @@ export const entityReducer: Reducer<ENTITY, AnyAction> = (state = initialStore.e
           isFetching: false,
           roundResult: 'YOU WIN',
           numberOfRound: state.numberOfRound + 1,
-          userOneChoise: {
-            ...state.userOneChoise,
-            score: state.userOneChoise.score + 1,
+          userOneChoice: {
+            ...state.userOneChoice,
+            score: state.userOneChoice.score + 1,
           },
-          userTwoChoise: {
-            ...state.userTwoChoise,
+          userTwoChoice: {
+            ...state.userTwoChoice,
             id: payload,
           },
         };
@@ -74,21 +74,21 @@ export const entityReducer: Reducer<ENTITY, AnyAction> = (state = initialStore.e
         isFetching: false,
         roundResult: 'YOU LOSE',
         numberOfRound: state.numberOfRound + 1,
-        userTwoChoise: {
-          ...state.userTwoChoise,
-          score: state.userTwoChoise.score + 1,
+        userTwoChoice: {
+          ...state.userTwoChoice,
+          score: state.userTwoChoice.score + 1,
           id: payload,
         },
       };
     }
 
-    case types.USER_CHOISE_FAIL: {
+    case types.USER_CHOICE_FAIL: {
       return { ...state, isFetching: false };
     }
 
     case types.SET_A_NEW_GAME: {
-      const { roundResult, numberOfRound, userTwoChoise, userOneChoise } = initialStore.entity;
-      return { ...state, roundResult, numberOfRound, userTwoChoise, userOneChoise };
+      const { roundResult, numberOfRound, userTwoChoice, userOneChoice } = initialStore.entity;
+      return { ...state, roundResult, numberOfRound, userTwoChoice, userOneChoice };
     }
 
     default: {

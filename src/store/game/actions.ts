@@ -14,18 +14,18 @@ export const getEntitiesFail = () => ({
   type: types.GET_ENTITIES_FAIL,
 });
 
-export const userChoise = (payload: string) => ({
-  type: types.USER_CHOISE,
+export const userChoice = (payload: string) => ({
+  type: types.USER_CHOICE,
   payload,
 });
 
-export const userChoiseSuccess = (payload: string) => ({
-  type: types.USER_CHOISE_SUCCESS,
+export const userChoiceSuccess = (payload: string) => ({
+  type: types.USER_CHOICE_SUCCESS,
   payload,
 });
 
-export const userChoiseFail = () => ({
-  type: types.USER_CHOISE_FAIL,
+export const userChoiceFail = () => ({
+  type: types.USER_CHOICE_FAIL,
 });
 
 export const setANewGame = () => ({

@@ -1,9 +1,7 @@
 import React from 'react';
 import { Route, RouteProps, RouteComponentProps, Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
 
 // MODELS
-import { STORE } from '../../store/store.model';
 import { UserI } from '../../store/users/model';
 
 // CONSTANTS
@@ -19,11 +17,7 @@ interface ProtectedRouteProps extends RouteProps {
   currentUser: UserI;
 }
 
-function isPassAllowed(user: UserI) {
-  return Boolean(user.name);
-}
-
-const RootProtectedRoute = ({
+export const RootProtectedRoute = ({
   component: Component,
   isProtected,
   path,
@@ -45,7 +39,7 @@ const RootProtectedRoute = ({
     );
   }
 
-  if (!isPassAllowed(currentUser)) {
+  if (!currentUser.name) {
     // alert('Pick a name first');
     return <Redirect to={AUTH_PAGE_PATH} />;
   }
@@ -62,10 +56,3 @@ const RootProtectedRoute = ({
     />
   );
 };
-
-const mapStateToProps = (state: STORE) => ({
-  currentUser: state.users.currentUser,
-});
-const mapDispatchToProps = {};
-
-export const ProtectedRoute = connect(mapStateToProps, mapDispatchToProps)(RootProtectedRoute);

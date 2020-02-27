@@ -12,11 +12,11 @@ export const initialStore: STORE = {
   entity: {
     entities: [],
     isFetching: false,
-    userOneChoise: {
+    userOneChoice: {
       id: '',
       score: 0,
     },
-    userTwoChoise: {
+    userTwoChoice: {
       id: '',
       score: 0,
     },

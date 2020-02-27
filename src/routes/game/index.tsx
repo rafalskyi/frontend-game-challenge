@@ -2,16 +2,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 // ACTIONS
-import { getEntities, userChoise, setANewGame } from '../../store/game/actions';
+import { getEntities, userChoice, setANewGame } from '../../store/game/actions';
 
 // MODELS
 import { STORE } from '../../store/store.model';
-import { getEntitiesType, userChoiseType, setANewGameType, EntityItem, ISER_CHOISE } from '../../store/game/model';
+import { getEntitiesType, userChoiceType, setANewGameType, EntityItem, USER_CHOICE } from '../../store/game/model';
 
 // COMPONENTS
 import { EntityList } from './entity-list';
 import { CustomModal } from '../../components/modal';
-import { Spiner } from '../../components/spiner';
+import { Spinner } from '../../components/spinner';
 
 import { MAX_ROUND_COUNT } from '../../constants';
 
@@ -21,8 +21,8 @@ interface OwnProps {}
 
 interface StoreProps {
   entities: EntityItem[];
-  userOne: ISER_CHOISE;
-  userTwo: ISER_CHOISE;
+  userOne: USER_CHOICE;
+  userTwo: USER_CHOICE;
   roundResult: string;
   numberOfRound: number;
   isFetching: boolean;
@@ -30,17 +30,17 @@ interface StoreProps {
 
 interface DispatchProps {
   getEntities: getEntitiesType;
-  userChoise: userChoiseType;
+  userChoice: userChoiceType;
   setANewGame: setANewGameType;
 }
 
-type ALLPROPS = StoreProps & DispatchProps & OwnProps;
+type ALL_PROPS = StoreProps & DispatchProps & OwnProps;
 
 type ALLSTATE = {
   openModal: boolean;
 };
 
-export class GameComponent extends Component<ALLPROPS, ALLSTATE> {
+export class GameComponent extends Component<ALL_PROPS, ALLSTATE> {
   state = {
     openModal: false,
   };
@@ -51,7 +51,7 @@ export class GameComponent extends Component<ALLPROPS, ALLSTATE> {
     getEntities();
   }
 
-  componentDidUpdate(prevProps: ALLPROPS) {
+  componentDidUpdate(prevProps: ALL_PROPS) {
     const { numberOfRound } = this.props;
 
     if (prevProps.numberOfRound !== MAX_ROUND_COUNT && numberOfRound === MAX_ROUND_COUNT) {
@@ -75,7 +75,7 @@ export class GameComponent extends Component<ALLPROPS, ALLSTATE> {
   resultString = () => {
     const { userOne, userTwo } = this.props;
 
-    if (userOne.score === userTwo.score) return 'Result of Your match is DROW';
+    if (userOne.score === userTwo.score) return 'Result of Your match is DRAW';
 
     if (userOne.score > userTwo.score) return 'Congratulations you are winner';
 
@@ -84,7 +84,7 @@ export class GameComponent extends Component<ALLPROPS, ALLSTATE> {
 
   render() {
     const { openModal } = this.state;
-    const { entities, userOne, userTwo, roundResult, numberOfRound, userChoise, isFetching } = this.props;
+    const { entities, userOne, userTwo, roundResult, numberOfRound, userChoice, isFetching } = this.props;
     return (
       <div className="game">
         <h1 className="game__title">{numberOfRound === 0 ? `Choose your fighter` : `Round #${numberOfRound}`}</h1>
@@ -93,8 +93,8 @@ export class GameComponent extends Component<ALLPROPS, ALLSTATE> {
         </h1>
 
         <div className="game__board">
-          {isFetching && <Spiner />}
-          <EntityList userBoard entities={entities} userChoise={userChoise} selected={userOne.id} />
+          {isFetching && <Spinner />}
+          <EntityList userBoard entities={entities} userChoice={userChoice} selected={userOne.id} />
           <div className="game__vs-title-box">
             <h1>VS</h1>
           </div>
@@ -124,14 +124,14 @@ export class GameComponent extends Component<ALLPROPS, ALLSTATE> {
 const mapStateToProps = (store: STORE): StoreProps => ({
   entities: store.entity.entities,
   isFetching: store.entity.isFetching,
-  userOne: store.entity.userOneChoise,
-  userTwo: store.entity.userTwoChoise,
+  userOne: store.entity.userOneChoice,
+  userTwo: store.entity.userTwoChoice,
   roundResult: store.entity.roundResult,
   numberOfRound: store.entity.numberOfRound,
 });
 
 export default connect<StoreProps, DispatchProps, OwnProps, STORE>(mapStateToProps, {
   getEntities,
-  userChoise,
+  userChoice,
   setANewGame,
 })(GameComponent);

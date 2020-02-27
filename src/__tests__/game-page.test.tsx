@@ -3,7 +3,7 @@ import * as React from 'react';
 import ReactDOM from 'react-dom';
 
 import { GameComponent } from '../routes/game';
-import { Spiner } from '../components/spiner';
+import { Spinner } from '../components/spinner';
 import { CustomModal } from '../components/modal';
 
 // import store from '../store';
@@ -18,7 +18,7 @@ describe('Game component rendering', () => {
     roundResult: '',
     numberOfRound: 0,
     getEntities: () => {},
-    userChoise: () => {},
+    userChoice: () => {},
     setANewGame: () => {},
   };
 
@@ -28,10 +28,10 @@ describe('Game component rendering', () => {
     ReactDOM.unmountComponentAtNode(div);
   });
 
-  it('render spiner', () => {
+  it('render spinner', () => {
     const caseProps = { ...props, isFetching: true };
     const wrapper = shallow(<GameComponent {...caseProps} />);
-    expect(wrapper.find(Spiner).exists()).toBe(true);
+    expect(wrapper.find(Spinner).exists()).toBe(true);
   });
 
   it('render modal', () => {
