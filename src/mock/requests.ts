@@ -21,9 +21,10 @@ const getOpponentChoice = (arr: ENTITIESTYPE[], randomNumber: number): string =>
   );
 };
 
-export const getEntity = () => new Promise((res, rej) => setTimeout(() => res(ENTITIES), 500));
+export const getEntity: () => Promise<ENTITIESTYPE[]> = () =>
+  new Promise((res, rej) => setTimeout(() => res(ENTITIES), 500));
 
-export const userChoiceRequest = () =>
+export const userChoiceRequest: () => Promise<string> = () =>
   new Promise((res, rej) =>
     setTimeout(() => {
       const preferIndex = getRandomNumber(ENTITIES.length);
