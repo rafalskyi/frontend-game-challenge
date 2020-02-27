@@ -15,12 +15,15 @@ describe('Auth-form component rendering', () => {
     ReactDOM.unmountComponentAtNode(div);
   });
 
-  // it('submit', () => {
-  //   const wrapper = shallow(<AuthForm {...props} />) as any;
-  //   const instance = wrapper.instance();
-  //   const event = jest.spyOn(instance, 'saveEvent');
+  it('submit', () => {
+    let invocationIndicator = false;
+    const testCallback = () => {
+      invocationIndicator = true;
+    };
 
-  //   wrapper.find('button.auth-form__submit').simulate('click');
-  //   expect(event).toBeCalled();
-  // });
+    const wrapper = shallow(<AuthForm handleSubmit={testCallback} />) as any;
+
+    wrapper.find('button.auth-form__submit').simulate('click');
+    expect(invocationIndicator).toEqual(true);
+  });
 });
