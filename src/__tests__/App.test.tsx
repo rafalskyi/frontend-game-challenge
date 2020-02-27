@@ -8,16 +8,17 @@ import store from '../store';
 import { AppRoot } from '../routes/app';
 
 describe('Root App component rendering', () => {
-  beforeEach(() => {
-    jest.spyOn(React, 'useEffect').mockImplementation((f) => f());
-  });
-
+  const props = {
+    currentUser: {
+      name: '',
+    },
+  };
   it('renders without crashing', () => {
     const div = document.createElement('div');
     ReactDOM.render(
       <Router>
         <Provider store={store}>
-          <AppRoot />
+          <AppRoot {...props} />
         </Provider>
       </Router>,
       div

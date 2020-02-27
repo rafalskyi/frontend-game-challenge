@@ -8,7 +8,7 @@ import { STORE } from '../store/store.model';
 // GAME
 import { getEntitiesSuccess, getEntitiesFail } from '../store/game/actions';
 import { userChoiceSuccess, userChoiceFail } from '../store/game/actions';
-import { getEntitiesWorkerSaga, userChoiseWorkerSaga } from '../saga/game';
+import { getEntitiesWorkerSaga, userChoiceWorkerSaga } from '../saga/game';
 import * as mockApiCalls from '../mock/requests';
 import { ENTITIES } from '../mock/data';
 
@@ -77,7 +77,7 @@ describe('redux related tests', () => {
     requestAuthors.mockClear();
   });
 
-  it('userChoiseWorkerSaga should call api and dispatch correctly on SUCCESS', async () => {
+  it('userChoiceWorkerSaga should call api and dispatch correctly on SUCCESS', async () => {
     const testValue = 'TEST VALUE';
     const userChoiceRequest = jest
       .spyOn(mockApiCalls, 'userChoiceRequest')
@@ -89,7 +89,7 @@ describe('redux related tests', () => {
       {
         dispatch: (action) => dispatched.push(action as any),
       },
-      userChoiseWorkerSaga as any
+      userChoiceWorkerSaga as any
     );
 
     expect(userChoiceRequest).toHaveBeenCalledTimes(1);
@@ -97,7 +97,7 @@ describe('redux related tests', () => {
     userChoiceRequest.mockClear();
   });
 
-  it('userChoiseWorkerSaga should call api and dispatch correctly on FAILURE', async () => {
+  it('userChoiceWorkerSaga should call api and dispatch correctly on FAILURE', async () => {
     const userChoiceRequest = jest
       .spyOn(mockApiCalls, 'userChoiceRequest')
       .mockImplementation(() => Promise.reject(new Error('TEST')));
@@ -108,7 +108,7 @@ describe('redux related tests', () => {
       {
         dispatch: (action) => dispatched.push(action as any),
       },
-      userChoiseWorkerSaga as any
+      userChoiceWorkerSaga as any
     );
 
     expect(userChoiceRequest).toHaveBeenCalledTimes(1);

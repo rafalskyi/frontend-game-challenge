@@ -9,7 +9,7 @@ import { ENTITIES } from '../mock/data';
 describe('Entity component rendering', () => {
   const props = {
     entities: ENTITIES,
-    userChoise: () => {},
+    userChoice: () => {},
     userBoard: false,
     selected: '',
   };

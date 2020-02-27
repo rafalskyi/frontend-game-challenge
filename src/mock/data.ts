@@ -1,4 +1,4 @@
-export type ENTITIESTYPE = {
+export type ENTITIES_TYPE = {
   id: string;
   title: string;
   icon: string;

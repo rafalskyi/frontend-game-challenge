@@ -16,7 +16,7 @@ export function* getEntitiesWorkerSaga() {
   }
 }
 
-export function* userChoiseWorkerSaga() {
+export function* userChoiceWorkerSaga() {
   try {
     const response: string = yield call(userChoiceRequest);
 
@@ -28,7 +28,7 @@ export function* userChoiseWorkerSaga() {
 
 function* entity() {
   yield takeEvery(GET_ENTITIES, getEntitiesWorkerSaga);
-  yield takeEvery(USER_CHOICE, userChoiseWorkerSaga);
+  yield takeEvery(USER_CHOICE, userChoiceWorkerSaga);
 }
 
 export default entity;
